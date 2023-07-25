@@ -1,15 +1,32 @@
 import 'package:flutter/material.dart';
 
-class Header extends StatelessWidget implements PreferredSizeWidget {
-  const Header({Key? key}) : super(key: key);
+buildHeader() {
+  return SliverAppBar(
+    // ハンバーガーメニュー
+    leading: IconButton(
+      icon: Icon(Icons.menu),
+      onPressed: () {},
+    ),
 
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      title: Text('Sample Web App <USE COMPONENTS>'),
-    );
-  }
+    // アプリ名
+    title: Text('SampleWebApp'),
 
-  @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+    // アイコンを定義 TODO: 別メソッドの書く
+    iconTheme: IconThemeData(size: 55),
+
+    // アイコンを配置
+    actions: <Widget>[
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        child: IconButton(
+          icon: CircleAvatar(
+            backgroundImage: NetworkImage(
+                'https://avatars.githubusercontent.com/u/53481561?v=4'),
+            backgroundColor: Colors.transparent,
+          ),
+          onPressed: () {},
+        ),
+      ),
+    ],
+  );
 }
