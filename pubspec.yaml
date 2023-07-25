@@ -23,3 +23,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+
+build_runner: ^2.1.5
