@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:sample_webapp_on_firebase/src/components/CommonDrawer.dart';
+import 'package:sample_webapp_on_firebase/src/components/CommonLeftListView.dart';
+import 'package:sample_webapp_on_firebase/src/components/CommonUserIcon.dart';
+import 'package:sample_webapp_on_firebase/src/static/ConstColors.dart';
 
-buildHeader() {
-  return SliverAppBar(
-    // ハンバーガーメニュー
-    leading: IconButton(
-      icon: Icon(Icons.menu),
-      onPressed: () {},
-    ),
+import 'package:sample_webapp_on_firebase/src/static/ConstColors.dart';
 
-    // アプリ名
-    title: Text('SampleWebApp'),
+class CommonHeader extends StatelessWidget {
+  const CommonHeader({Key? key}) : super(key: key);
 
-    // アイコンを定義 TODO: 別メソッドの書く
-    iconTheme: IconThemeData(size: 55),
-
-    // アイコンを配置
-    actions: <Widget>[
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: IconButton(
-          icon: CircleAvatar(
-            backgroundImage: NetworkImage(
-                'https://avatars.githubusercontent.com/u/53481561?v=4'),
-            backgroundColor: Colors.transparent,
-          ),
-          onPressed: () {},
-        ),
-      ),
-    ],
-  );
+  @override
+  Widget build(BuildContext context) {
+    return SliverAppBar(
+      leading: MediaQuery.of(context).size.width > 1023
+          // リストビュー
+          ? null
+          // drawerからのリストビュー
+          : Builder(
+              builder: (context) => IconButton(
+                icon: Icon(Icons.menu),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                iconSize: 35,
+              ),
+            ),
+      title: Text('sampleWebApp'),
+      actions: [CommonUserIcon()],
+    );
+  }
 }
